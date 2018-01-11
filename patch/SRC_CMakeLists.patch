@@ -1,0 +1,13 @@
+--- SRC/CMakeLists.txt	2009-08-10 19:47:54.000000000 +0200
++++ New_CMakeLists.txt	2018-01-11 15:24:44.872371800 +0100
+@@ -377,4 +377,9 @@
+ endif()
+ add_library(lapack ${ALLOBJ} ${ALLXOBJ})
+ target_link_libraries(lapack blas)
+-
++install(TARGETS lapack
++  EXPORT CLAPACK
++  ARCHIVE DESTINATION lib
++  LIBRARY DESTINATION lib
++  RUNTIME DESTINATION bin
++  )

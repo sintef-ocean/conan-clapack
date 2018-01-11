@@ -1,0 +1,12 @@
+--- F2CLIBS/libf2c/CMakeLists.txt	2009-08-10 20:06:06.000000000 +0200
++++ New_CMakeLists.txt	2018-01-11 15:24:16.228233300 +0100
+@@ -60,3 +60,9 @@
+ include_directories(${CLAPACK_BINARY_DIR}/F2CLIBS/libf2c)
+ add_library(f2c ${OFILES} ${CMAKE_CURRENT_BINARY_DIR}/arith.h)
+ set_property(TARGET f2c PROPERTY PREFIX lib)
++install(TARGETS f2c
++  EXPORT CLAPACK
++  ARCHIVE DESTINATION lib
++  LIBRARY DESTINATION lib
++  RUNTIME DESTINATION bin
++  )

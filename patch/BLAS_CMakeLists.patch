@@ -1,0 +1,12 @@
+--- BLAS/SRC/CMakeLists.txt	2009-08-14 22:16:25.000000000 +0200
++++ New_CMakeLists.txt	2018-01-11 15:23:20.943062600 +0100
+@@ -141,3 +141,9 @@
+   target_link_libraries(blas m)
+ endif()
+ target_link_libraries(blas f2c)
++install(TARGETS blas 
++  EXPORT CLAPACK
++  ARCHIVE DESTINATION lib
++  LIBRARY DESTINATION lib
++  RUNTIME DESTINATION bin
++  )
