@@ -45,7 +45,7 @@ class ClapackConan(ConanFile):
                 for i in range(len(self.cpp_info.libs)):
                     self.cpp_info.libs[i] += 'd'
         else:
-            self.cpp_info.libs = ["f2c", "blas", "lapack"]
+            self.cpp_info.libs = ["lapack", "blas", "f2c"]
           
     def configure(self):
         del self.settings.compiler.libcxx
