@@ -42,7 +42,7 @@ int main( )
     dgesvd_( &JOBU, &JOBVT, &M, &N, a, &LDA, s, uu, 
           &LDU, vt, &LDVT, wk, &LWORK, &INFO);
           
-    printf("\n INFO=%d", INFO );          
+    printf("\n INFO=%ld", INFO );          
 
     for ( i= 0; i< SIZE; i++ ) {
         printf("\n s[ %d ] = %f", i, s[ i ] );

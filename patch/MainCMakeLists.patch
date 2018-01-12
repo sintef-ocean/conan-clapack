@@ -1,6 +1,6 @@
 --- CMakeLists.txt	2009-08-10 20:46:33.000000000 +0200
-+++ New_CMakeLists.txt	2018-01-11 18:34:40.944684000 +0100
-@@ -1,22 +1,44 @@
++++ MainNew_CMakeLists.txt	2018-01-12 18:59:57.844191600 +0100
+@@ -1,22 +1,47 @@
 -cmake_minimum_required(VERSION 2.6)
 +cmake_minimum_required(VERSION 3.1.2)
  project(CLAPACK C)
@@ -40,7 +40,10 @@
 +    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${WARN_FLAGS}"
 +         CACHE STRING "Flags used by the C compiler during all build types." FORCE )
 +    set( CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Append this string to debug lib names")
++  else()
++    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-logical-op-parentheses -Wno-parentheses -Wno-shift-op-parentheses")
 +  endif(MSVC)
++  
 +  set( SETUP_COMPILER_FLAGS_HAS_RUN TRUE CACHE INTERNAL "one-time setup of compiler options" FORCE)
 +endif( NOT SETUP_COMPILER_FLAGS_HAS_RUN )
 +
@@ -49,7 +52,7 @@
  include_directories(${CLAPACK_SOURCE_DIR}/INCLUDE)
  add_subdirectory(F2CLIBS)
  add_subdirectory(BLAS)
-@@ -32,3 +54,5 @@
+@@ -32,3 +57,5 @@
    ${CLAPACK_BINARY_DIR}/clapack-config-version.cmake @ONLY)
  configure_file(${CLAPACK_SOURCE_DIR}/clapack-config.cmake.in
    ${CLAPACK_BINARY_DIR}/clapack-config.cmake @ONLY)
