@@ -6,7 +6,7 @@ import os
 
 class ClapackTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    generators = "cmake"
+    generators = ("cmake_paths", "cmake_find_package")
 
     def build(self):
         cmake = CMake(self)
@@ -17,8 +17,12 @@ class ClapackTestConan(ConanFile):
         pass
 
     def test(self):
-        if not tools.cross_building(self.settings):
-            os.chdir("bin")
-            self.run(".%sexample" % os.sep)
+        program = 'example'
+        if self.settings.os == "Windows":
+            program += '.exe'
+            test_path = os.path.join(self.build_folder,
+                                     str(self.settings.build_type))
         else:
-            print("NOT_RUN (cross-building)");
+            test_path = '.' + os.sep
+
+        self.run(os.path.join(test_path, program))

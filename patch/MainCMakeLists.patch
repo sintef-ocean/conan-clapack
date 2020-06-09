@@ -7,8 +7,8 @@
 -enable_testing()
 -include(CTest)
 +
-+include(${CMAKE_BINARY_DIR}/../conanbuildinfo.cmake)
-+conan_basic_setup()
++include(${CMAKE_BINARY_DIR}/../conan_paths.cmake)
++
 +
 +# Disable testing due stack overflow of xeigtstz: https://github.com/Reference-LAPACK/lapack/issues/85
 +#enable_testing() 
