@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from conans import ConanFile, CMake, tools
+from conans import ConanFile, CMake
 import os
+
 
 class ClapackTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"

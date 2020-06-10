@@ -40,11 +40,11 @@ The package is usually consumed using the `conan install` command or a *conanfil
    cmake_minimum_required(VERSION 3.13)
    project(TheProject CXX)
 
-   include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-   conan_basic_setup(TARGETS)
+   include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
+   find_package(clapack MODULE REQUIRED)
 
    add_executable(the_executor code.cpp)
-   target_link_libraries(the_executor CONAN_PKG::clapack)
+   target_link_libraries(the_executor clapack::clapack)
    ```
    Then, do
    ```bash
