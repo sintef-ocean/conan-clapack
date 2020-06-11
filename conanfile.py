@@ -16,7 +16,7 @@ class ClapackConan(ConanFile):
     description = \
         "CLAPACK's goal is to provide LAPACK for someone who does " \
         " not have access to a Fortran compiler"
-    topics = ("LAPACK", "Port to C", "Numerical linear algebra")
+    topics = ("clapack", "LAPACK", "Port to C", "Numerical linear algebra")
     settings = "os", "compiler", "build_type", "arch"
     generators = ("cmake_paths", "cmake_find_package")
     exports = ["patch/*"]
