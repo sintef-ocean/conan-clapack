@@ -3,7 +3,7 @@ project(ClapackTest CXX)
 
 include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
 
-find_package(clapack MODULE REQUIRED)
+find_package(CLAPACK MODULE REQUIRED)
 
 add_executable(example example.cpp)
-target_link_libraries(example clapack::clapack)
+target_link_libraries(example CLAPACK::CLAPACK)

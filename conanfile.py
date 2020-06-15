@@ -52,6 +52,7 @@ class ClapackConan(ConanFile):
                   ignore_case=True, keep_path=False)
 
     def package_info(self):
+        self.cpp_info.name = 'CLAPACK'
         if self.settings.compiler == "Visual Studio":
             self.cpp_info.libs = ["libf2c", "blas", "lapack"]
             if self.settings.build_type == "Debug":
