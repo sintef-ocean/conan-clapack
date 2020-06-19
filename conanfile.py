@@ -11,7 +11,7 @@ class ClapackConan(ConanFile):
     license = "BSD 3-Clause"
     # BSD-3-Clause-Clear
     url = "https://github.com/sintef-ocean/conan-clapack"
-    author = "Joakim Haugen (joakim.haugen@gmail.com)"
+    author = "SINTEF Ocean"
     homepage = "http://www.netlib.org/clapack/"
     description = \
         "CLAPACK's goal is to provide LAPACK for someone who does " \
