@@ -32,6 +32,10 @@ jobs:
           sudo pip3 install --upgrade setuptools pip
           sudo pip3 install conan requests
           sudo pip3 install conan_package_tools
+          wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
+          echo deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-10 main >> clang10.list
+          sudo mv clang10.list /etc/apt/sources.list.d/clang10.list
+          sudo apt-get update
           sudo apt-get install clang-tools-10
       - name: Configure Conan
         run: conan remote add sintef ${CONAN_UPLOAD} --insert 0
