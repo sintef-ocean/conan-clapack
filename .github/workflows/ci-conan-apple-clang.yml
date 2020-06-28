@@ -37,7 +37,7 @@ jobs:
             -s build_type=${{ matrix.build_type }} \
             -s compiler=apple-clang \
             -s compiler.version=${{ matrix.compiler_version }} \
-            -s compiler.libcxx=libstdc++11 \
+            -s compiler.libcxx=libc++ \
             -b missing -b outdated . sintef/stable
       - name: Conan upload
         run: |
