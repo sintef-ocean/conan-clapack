@@ -20,7 +20,7 @@ jobs:
       fail-fast: false
       matrix:
         compiler: [apple-clang]
-        compiler_version: [11.0]
+        compiler_version: ['11.0']
         build_type: [Debug, Release]
         os: [macos-latest]
     steps:
