@@ -37,7 +37,9 @@ jobs:
         run: conan remote add sintef ${CONAN_UPLOAD} --insert 0
       - name: Conan create
         run: |
-          conan create -s build_type=${{ matrix.build_type }} \
+          conan create \
+            -s build_type=${{ matrix.build_type }} \
+            -s arch=${{ matrix.arch }} \
             -s compiler.libcxx=libstdc++11 \
             -b missing -b outdated . sintef/stable
       - name: Conan upload
