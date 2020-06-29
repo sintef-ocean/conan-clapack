@@ -19,11 +19,8 @@ jobs:
         arch: [armv7, arm64]
         build_type: [Debug, Release]
     steps:
-      - name: Create buildx instance
-        run: |
-          docker run --rm --privileged linuxkit/binfmt:v0.8
-          docker buildx create --use --name builder
-          docker buildx inspect --boostrap
+      - name: Install qemu emulators
+        run: docker run --rm --privileged linuxkit/binfmt:v0.8
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Run in container
