@@ -27,11 +27,8 @@ jobs:
         run: |
           docker run \
             -e CONAN_NON_INTERACTIVE \
-            -e CONAN_UPLOAD \
-            -e SINTEF_REFERENCE \
-            -e SINTEF_CONAN_CLASS \
             -v $PWD:/home ringhorne/debian-buster-buildbase:${{ matrix.arch }} /bin/bash -c \
-            "conan remote add ${CONAN_UPLOAD} --insert 1 && \
+            "conan remote add sintef ${CONAN_UPLOAD} --insert 1 && \
             conan create \
               -s build_type=${{ matrix.build_type }} \
               -s arch=${{ matrix.arch }} \
