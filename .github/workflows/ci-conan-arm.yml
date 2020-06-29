@@ -24,11 +24,13 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Run in container
-        env:
-          THE_IMAGE: ringhorne/debian-buster-buildbase
         run: |
-          docker run -e CONAN_NON_INTERACTIVE \
-            -v $PWD:/home ${THE_IMAGE}:${{ matrix.arch }} /bin/bash -c \
+          docker run \
+            -e CONAN_NON_INTERACTIVE \
+            -e CONAN_UPLOAD \
+            -e SINTEF_REFERENCE \
+            -e SINTEF_CONAN_CLASS \
+            -v $PWD:/home ringhorne/debian-buster-buildbase:${{ matrix.arch }} /bin/bash -c \
             "conan remote add ${CONAN_UPLOAD} --insert 1 && \
             conan create \
               -s build_type=${{ matrix.build_type }} \
