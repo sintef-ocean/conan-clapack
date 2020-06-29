@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: [armv7, arm64]
+        arch: [armv7, armv8]
         build_type: [Debug, Release]
     steps:
       - name: Install qemu emulators
@@ -24,10 +24,12 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Run in container
+        env:
+          THE_IMAGE: ringhorne/debian-buster-buildbase
         run: |
           docker run \
             -e CONAN_NON_INTERACTIVE \
-            -v $PWD:/home ringhorne/debian-buster-buildbase:${{ matrix.arch }} /bin/bash -c \
+            -v $PWD:/home ${THE_IMAGE}:${{ matrix.arch }} /bin/bash -c \
             "conan remote add sintef ${CONAN_UPLOAD} --insert 1 && \
             conan create \
               -s build_type=${{ matrix.build_type }} \
