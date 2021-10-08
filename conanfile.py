@@ -18,6 +18,12 @@ class ClapackConan(ConanFile):
         "not have access to a Fortran compiler"
     topics = ("clapack", "LAPACK", "Port to C", "Numerical linear algebra")
     settings = "os", "compiler", "build_type", "arch"
+    options = {
+        "fPIC": [True, False],
+    }
+    default_options = {
+        "fPIC": True,
+    }
     generators = ("cmake_paths", "cmake_find_package")
     exports = ["patch/*"]
     source_file = "clapack-{}-CMAKE.tgz".format(version)
@@ -42,6 +48,7 @@ class ClapackConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
+        cmake.definitions['CMAKE_POSITION_INDEPENDENT_CODE'] = self.options.fPIC
         cmake.configure(source_folder=self.source_subfolder,
                         build_folder=self.build_subfolder)
         cmake.build()
@@ -60,6 +67,11 @@ class ClapackConan(ConanFile):
                     self.cpp_info.libs[i] += 'd'
         else:
             self.cpp_info.libs = ["lapack", "blas", "f2c"]
+
+    def config_options(self):
+        if self.settings.os == "Windows":
+            del self.options.fPIC
+
 
     def configure(self):
         del self.settings.compiler.libcxx
