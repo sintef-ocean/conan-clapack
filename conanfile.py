@@ -48,7 +48,8 @@ class ClapackConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        cmake.definitions['CMAKE_POSITION_INDEPENDENT_CODE'] = self.options.fPIC
+        if self.settings.os != "Windows":
+            cmake.definitions['CMAKE_POSITION_INDEPENDENT_CODE'] = self.options.fPIC
         cmake.configure(source_folder=self.source_subfolder,
                         build_folder=self.build_subfolder)
         cmake.build()
