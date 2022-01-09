@@ -39,6 +39,7 @@ jobs:
           conan create -s build_type=${{ matrix.build_type }} `
             -s compiler.version=${{ matrix.compiler_version }} `
             -s compiler.toolset=${{ matrix.compiler_toolset }} `
+            -s compiler="Visual Studio" `
             -b missing -b outdated . sintef/stable
       - name: Conan upload
         run: |
