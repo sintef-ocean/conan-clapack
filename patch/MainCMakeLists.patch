@@ -11,9 +11,9 @@
 +
 +
 +# Disable testing due stack overflow of xeigtstz: https://github.com/Reference-LAPACK/lapack/issues/85
-+#enable_testing() 
++#enable_testing()
 +#include(CTest)
- 
+
  if(WIN32 AND NOT CYGWIN)
    set(SECOND_SRC  ${CLAPACK_SOURCE_DIR}/INSTALL/winsecond.c)
    set(DSECOND_SRC  ${CLAPACK_SOURCE_DIR}/INSTALL/windsecnd.c)
@@ -41,9 +41,9 @@
 +         CACHE STRING "Flags used by the C compiler during all build types." FORCE )
 +    set( CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Append this string to debug lib names")
 +  else()
-+    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-logical-op-parentheses -Wno-parentheses -Wno-shift-op-parentheses")
++    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fcommon -Wno-logical-op-parentheses -Wno-parentheses -Wno-shift-op-parentheses")
 +  endif(MSVC)
-+  
++
 +  set( SETUP_COMPILER_FLAGS_HAS_RUN TRUE CACHE INTERNAL "one-time setup of compiler options" FORCE)
 +endif( NOT SETUP_COMPILER_FLAGS_HAS_RUN )
 +
