@@ -1,5 +1,5 @@
 ---
-name: Windows MSVC
+name: Windows MSVC Clang
 
 on: [push, workflow_dispatch]
 
@@ -20,8 +20,8 @@ jobs:
       fail-fast: false
       matrix:
         conan: ["1.0", "2.0"]
-        profile: [msvc17]
-        compiler_version: [191, 192, 193]
+        profile: [msvc_clang]
+        runtime_version: [v143]
         build_type: [Debug, Release]
     steps:
       - uses: actions/checkout@v3
@@ -47,7 +47,7 @@ jobs:
         run: |
           conan config install ${{ env.CONFIG_URL }} --type git -sf conan${{ matrix.conan }}
           conan create -s build_type=${{ matrix.build_type }} `
-            -s compiler.version=${{ matrix.compiler_version }} `
+            -s compiler.runtime_version=${{ matrix.runtime_version }} `
             -pr:b=${{ matrix.profile }} -pr:h=${{ matrix.profile }} `
             -b missing -b outdated -b ${{ env.package_name }}* `
             . ${{ env.USER_CHANNEL }}

@@ -1,0 +1,11 @@
+sources:
+  "3.2.1":
+    url: "https://netlib.org/clapack/clapack-3.2.1-CMAKE.tgz"
+    sha256: "0b3f782bc24845d85f36bafbff0f2f1384dc72df730fda4e7924ec1a70baca5a"
+
+patches:
+  "3.2.1":
+    - patch_file: "patches/0001_MainCMakeLists.patch"
+    - patch_file: "patches/0002_SRC_CMakeLists.patch"
+    - patch_file: "patches/0003_F2C_CMakeLists.patch"
+    - patch_file: "patches/0004_BLAS_CMakeLists.patch"
