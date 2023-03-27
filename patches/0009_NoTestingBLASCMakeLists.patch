@@ -1,0 +1,6 @@
+--- BLAS/CMakeLists.txt	2023-03-27 11:46:02.765910300 +0200
++++ BLAS/MainNew_CMakeLists.txt	2023-03-27 11:48:10.213520400 +0200
+@@ -1,2 +1,2 @@
+ add_subdirectory(SRC)
+-add_subdirectory(TESTING)
++#add_subdirectory(TESTING)

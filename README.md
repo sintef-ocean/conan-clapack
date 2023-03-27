@@ -36,7 +36,7 @@
    ```
    Insert into your *CMakeLists.txt* something like the following lines:
    ```cmake
-   cmake_minimum_required(VERSION 3.13)
+   cmake_minimum_required(VERSION 3.15)
    project(TheProject CXX)
 
    find_package(CLAPACK REQUIRED)

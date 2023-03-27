@@ -1,0 +1,10 @@
+--- BLAS/SRC/xerbla.c	2023-03-26 18:32:22.700118400 +0200
++++ BLAS/SRC/newxerbla.c	2023-03-26 18:32:16.412995800 +0200
+@@ -12,6 +12,7 @@
+ 
+ #include "f2c.h"
+ #include "blaswrap.h"
++#include "stdio.h"
+ 
+ /* Table of constant values */
+ 
