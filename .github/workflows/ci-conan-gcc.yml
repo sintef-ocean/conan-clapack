@@ -47,6 +47,7 @@ jobs:
         run: |
           git config --global --add safe.directory '*'
           conan config install ${{ env.CONFIG_URL }}  --type git -sf conan${{ matrix.conan }}
+          conan config install ${{ env.CONFIG_URL }}  --type git -sf profiles -tf profiles
           conan create -s build_type=${{ matrix.build_type }} \
             -s compiler.version=${{ matrix.compiler_version }} \
             -s compiler.cppstd=${{ env.cppstd }} \
