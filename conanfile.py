@@ -3,6 +3,7 @@ from conan import ConanFile
 from conan.tools.files import get, copy
 from conan.tools.files import apply_conandata_patches, export_conandata_patches
 from conan.tools.cmake import CMake, CMakeToolchain, cmake_layout
+from conan.tools.microsoft.visual import is_msvc
 
 required_conan_version = ">=1.53.0"
 
@@ -65,7 +66,7 @@ class ClapackConan(ConanFile):
         self.cpp_info.set_property("cmake_find_mode", "both")
         self.cpp_info.set_property("cmake_file_name", "CLAPACK")
         self.cpp_info.set_property("cmake_target_name", "CLAPACK::CLAPACK")
-        if self.settings.compiler == "msvc":
+        if is_msvc(self) or (self.settings.os == "Windows" and self.settings.compiler == "clang"):
             self.cpp_info.libs = ["libf2c", "blas", "lapack"]
             if self.settings.build_type == "Debug":
                 for i in range(len(self.cpp_info.libs)):

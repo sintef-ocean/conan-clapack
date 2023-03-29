@@ -1,8 +1,8 @@
 --- CMakeLists.txt	2009-08-10 20:46:33.000000000 +0200
 +++ MainNew_CMakeLists.txt	2018-01-12 18:59:57.844191600 +0100
-@@ -1,22 +1,46 @@
+@@ -1,22 +1,43 @@
 -cmake_minimum_required(VERSION 2.6)
-+cmake_minimum_required(VERSION 3.1.2)
++cmake_minimum_required(VERSION 3.15)
  project(CLAPACK C)
 -enable_testing()
 -include(CTest)
@@ -45,9 +45,6 @@
 +
 +  set( SETUP_COMPILER_FLAGS_HAS_RUN TRUE CACHE INTERNAL "one-time setup of compiler options" FORCE)
 +endif( NOT SETUP_COMPILER_FLAGS_HAS_RUN )
-+
-+cmake_policy(SET CMP0026 OLD) # Suppress warning Disallow use of the LOCATION target property.
-+
  include_directories(${CLAPACK_SOURCE_DIR}/INCLUDE)
  add_subdirectory(F2CLIBS)
  add_subdirectory(BLAS)

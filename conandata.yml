@@ -9,3 +9,8 @@ patches:
     - patch_file: "patches/0002_SRC_CMakeLists.patch"
     - patch_file: "patches/0003_F2C_CMakeLists.patch"
     - patch_file: "patches/0004_BLAS_CMakeLists.patch"
+    - patch_file: "patches/0005_BLAS_XERBLA.patch"
+    - patch_file: "patches/0006_BLAS_TESTING_CMakeLists.patch"
+    - patch_file: "patches/0007_TESTING_CMakeLists.patch"
+    - patch_file: "patches/0008_NoTestingCMakeLists.patch"
+    - patch_file: "patches/0009_NoTestingBLASCMakeLists.patch"

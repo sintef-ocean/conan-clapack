@@ -1,0 +1,15 @@
+--- BLAS/TESTING/CMakeLists.txt	2023-03-26 18:46:52.078402700 +0200
++++ BLAS/TESTING/NewCMakeLists.txt	2023-03-26 18:43:34.196228600 +0200
+@@ -30,11 +30,10 @@
+   get_filename_component(baseNAME ${src} NAME_WE)
+   set(TEST_INPUT "${CLAPACK_SOURCE_DIR}/BLAS/${baseNAME}.in")
+   add_executable(${name} ${src})
+-  get_target_property(TEST_LOC ${name} LOCATION)
+   target_link_libraries(${name} blas)
+   if(EXISTS "${TEST_INPUT}")
+     add_test(${name} "${CMAKE_COMMAND}"
+-      -DTEST=${TEST_LOC}
++      -DTEST=$<TARGET_FILE:${name}>
+       -DINPUT=${TEST_INPUT}
+       -DINTDIR=${CMAKE_CFG_INTDIR}
+       -P "${CLAPACK_SOURCE_DIR}/TESTING/runtest.cmake")
