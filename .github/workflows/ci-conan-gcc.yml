@@ -34,7 +34,7 @@ jobs:
             linux: ubuntu:22.04
             compiler_version: 11
     container:
-      image: debian:${{ matrix.debian }}
+      image: ${{ matrix.linux }}
       options: -u 0
     steps:
       - uses: actions/checkout@v4
