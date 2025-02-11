@@ -8,7 +8,8 @@ env:
   CONAN_PASSWORD_SINTEF: ${{ secrets.CONAN_PASSWORD }}
   CONAN_LOGIN_USERNAME_SINTEF: ${{ secrets.CONAN_USER }}
   CONFIG_URL: https://github.com/sintef-ocean/conan-configs.git
-
+  DEBIAN_FRONTEND: noninteractive
+  TZ: Etc/UTC
 jobs:
   conan-with-gcc:
     name: Conan
@@ -44,6 +45,7 @@ jobs:
           apt-get install -y jq pipx build-essential cmake git
           pipx install conan
           pipx ensurepath
+          exec bash
       - name: Configure Conan
         run: conan remote add sintef ${{ env.CONAN_UPLOAD }}
       - name: Get package name Conan 2
