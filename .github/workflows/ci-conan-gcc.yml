@@ -45,9 +45,12 @@ jobs:
           apt-get install -y jq pipx build-essential cmake git
           pipx install conan
           pipx ensurepath
-          exec bash
+          pipx list
       - name: Configure Conan
-        run: conan remote add sintef ${{ env.CONAN_UPLOAD }}
+        run: |
+          pipx list
+          env
+          conan remote add sintef ${{ env.CONAN_UPLOAD }}
       - name: Get package name Conan 2
         run: echo "package_name=$(conan inspect -f json . | jq .name -r)" >> $GITHUB_ENV
       - name: Conan create
