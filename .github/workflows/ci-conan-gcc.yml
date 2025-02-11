@@ -46,13 +46,12 @@ jobs:
           pipx install conan
       - name: Run Conan
         run: |
-          pipx ensurepath
-          conan remote add sintef ${{ env.CONAN_UPLOAD }}
-          echo "package_name=$(conan inspect -f json . | jq .name -r)" >> $GITHUB_ENV
+          /github/home/.local/bin/conan remote add sintef ${{ env.CONAN_UPLOAD }}
+          echo "package_name=$(/github/home/.local/bin/conan inspect -f json . | jq .name -r)" >> $GITHUB_ENV
           git config --global --add safe.directory '*'
-          conan config install ${{ env.CONFIG_URL }}  --type git -sf conan2.0
-          conan config install ${{ env.CONFIG_URL }}  --type git -sf profiles -tf profiles
-          conan create -s build_type=${{ matrix.build_type }} \
+          /github/home/.local/bin/conan config install ${{ env.CONFIG_URL }}  --type git -sf conan2.0
+          /github/home/.local/bin/conan config install ${{ env.CONFIG_URL }}  --type git -sf profiles -tf profiles
+          /github/home/.local/bin/conan create -s build_type=${{ matrix.build_type }} \
             -s compiler.version=${{ matrix.compiler_version }} \
             -pr:b=${{ matrix.profile }} -pr:h=${{ matrix.profile }} \
             -b missing -b outdated -b ${{ env.package_name }}* \
@@ -60,5 +59,4 @@ jobs:
             .
       - name: Conan upload
         run: |
-          pipx ensurepath
-          conan upload --confirm -r sintef ${{ env.package_name }}* --force
+          /github/home/.local/bin/conan upload --confirm -r sintef ${{ env.package_name }}* --force
