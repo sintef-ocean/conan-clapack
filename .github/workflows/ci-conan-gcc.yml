@@ -44,17 +44,11 @@ jobs:
           apt-get update
           apt-get install -y jq pipx build-essential cmake git
           pipx install conan
+      - name: Run Conan
+        run: |
           pipx ensurepath
-          pipx list
-      - name: Configure Conan
-        run: |
-          pipx list
-          env
           conan remote add sintef ${{ env.CONAN_UPLOAD }}
-      - name: Get package name Conan 2
-        run: echo "package_name=$(conan inspect -f json . | jq .name -r)" >> $GITHUB_ENV
-      - name: Conan create
-        run: |
+          echo "package_name=$(conan inspect -f json . | jq .name -r)" >> $GITHUB_ENV
           git config --global --add safe.directory '*'
           conan config install ${{ env.CONFIG_URL }}  --type git -sf conan2.0
           conan config install ${{ env.CONFIG_URL }}  --type git -sf profiles -tf profiles
@@ -65,4 +59,6 @@ jobs:
             --user sintef --channel stable \
             .
       - name: Conan upload
-        run: conan upload --confirm -r sintef ${{ env.package_name }}* --force
+        run: |
+          pipx ensurepath
+          conan upload --confirm -r sintef ${{ env.package_name }}* --force
