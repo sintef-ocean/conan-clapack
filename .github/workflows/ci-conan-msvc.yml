@@ -13,9 +13,6 @@ jobs:
   conan-with-msvc:
     name: Conan
     runs-on: windows-2025
-    env:
-      USER_CHANNEL: "${{ matrix.conan == '1.0' && 'sintef/stable' || '--user sintef --channel stable' }}"
-      UPLOAD_FLAGS: "${{ matrix.conan == '1.0' && '--all' || '' }}"
     strategy:
       fail-fast: false
       matrix:
